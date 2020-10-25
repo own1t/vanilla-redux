@@ -4,6 +4,8 @@ const add = document.getElementById("add");
 const remove = document.getElementById("remove");
 const number = document.querySelector("span");
 
+number.innerText = 0;
+
 const reducer = (count = 0, action) => {
   // console.log(count, action);
 
@@ -20,6 +22,7 @@ const countStore = createStore(reducer);
 
 const onChange = () => {
   console.log(countStore.getState());
+  number.innerText = countStore.getState();
 };
 
 countStore.subscribe(onChange);
