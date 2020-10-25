@@ -5,7 +5,7 @@ const remove = document.getElementById("remove");
 const number = document.querySelector("span");
 
 const reducer = (count = 0, action) => {
-  console.log(count, action);
+  // console.log(count, action);
 
   if (action.type === "ADD") {
     return count + 1;
@@ -18,10 +18,19 @@ const reducer = (count = 0, action) => {
 
 const countStore = createStore(reducer);
 
-countStore.dispatch({ type: "ADD" });
-countStore.dispatch({ type: "ADD" });
-countStore.dispatch({ type: "ADD" });
-countStore.dispatch({ type: "REMOVE" });
+const onChange = () => {
+  console.log(countStore.getState());
+};
+
+countStore.subscribe(onChange);
+
+// countStore.dispatch({ type: "ADD" });
+// countStore.dispatch({ type: "ADD" });
+// countStore.dispatch({ type: "ADD" });
+// countStore.dispatch({ type: "REMOVE" });
+
+add.addEventListener("click", () => countStore.dispatch({ type: "ADD" }));
+remove.addEventListener("click", () => countStore.dispatch({ type: "REMOVE" }));
 
 // let count = 0;
 
